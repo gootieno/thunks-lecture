@@ -34,13 +34,10 @@ if (process.env.NODE_ENV !== "production") {
 Remember a thunk, simply put, is a function that is returning another function which dispatches our actions. a few reminders while building them.
 
 ```js
-export const fetchUser = () => async (dispatch) => {
+export const fetchUser = () => async (dispatch, getState) => {
   const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
   if (!response.ok) throw response;
   const user = await response.json();
-  user.message = "WE GOT A USER!";
-  dispatch(addUser(user));
-  return user;
+  return dispatch(addUser(user));
 };
 ```
-
