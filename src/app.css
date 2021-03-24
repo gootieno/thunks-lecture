@@ -1,0 +1,35 @@
+.app-container {
+  display: flex;
+  border: 1px solid black;
+  padding: 25px;
+  justify-content: center;
+  margin: 0px 80px 15px 80px;
+}
+
+.get-user-button {
+  cursor: pointer;
+}
+
+.post-user-button {
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.clear-user-button {
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.user-message {
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin: 0px 120px 15px 120px;
+}
+
+.form-container > input {
+  margin-right: 10px;
+}
