@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, postUser, removeUser } from "./store/user";
+import { postUser, removeUser } from "./store/user";
 import "./app.css";
 
 const App = () => {
@@ -11,19 +11,13 @@ const App = () => {
     message: "",
   });
 
+  const dispatch = useDispatch();
   const users = useSelector((state) =>
     state.user ? Object.values(state.user) : null
   );
 
-  const dispatch = useDispatch();
-
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-  };
-
-  const handleGetUser = async () => {
-    setForm(false);
-    await dispatch(fetchUser());
   };
 
   const handleClearUsers = async () => {
@@ -45,7 +39,10 @@ const App = () => {
   return (
     <>
       <div className="app-container">
-        <button className="get-user-button" onClick={handleGetUser}>
+        <button
+          className="get-user-button"
+          onClick={() => alert("wire me up!")}
+        >
           GET USER
         </button>
         <button
