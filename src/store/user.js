@@ -14,12 +14,17 @@ export const removeUser = () => {
   };
 };
 
-// const getUrl = "https://jsonplaceholder.typicode.com/todos/1";
+const getUrl = "https://jsonplaceholder.typicode.com/todos/1";
 /*
 TODO: Turn the function into a thunk action creator using the
   above url
 */
-export const fetchUser = () => {};
+export const fetchUser = () => async (dispatch) => {
+  const response = await fetch(getUrl);
+  if (!response.ok) throw response;
+  const user = await response.json();
+  dispatch(addUser(user));
+};
 
 export const postUser = (userInfo) => async (dispatch) => {
   console.log("In the post user thunk ", userInfo);

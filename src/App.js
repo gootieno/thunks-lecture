@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postUser, removeUser } from "./store/user";
+import { fetchUser, postUser, removeUser } from "./store/user";
 import "./app.css";
 
 const App = () => {
@@ -20,15 +20,20 @@ const App = () => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
-  const handleClearUsers = async () => {
+  const handleClearUsers = () => {
     setForm(false);
-    await dispatch(removeUser());
+    dispatch(removeUser());
   };
 
-  const handlePostUser = async (e) => {
+  const handleFetchUser = () => {
+    setForm(false);
+    dispatch(fetchUser());
+  };
+
+  const handlePostUser = (e) => {
     e.preventDefault();
     setForm((prev) => !prev);
-    await dispatch(postUser(userInfo));
+    dispatch(postUser(userInfo));
     setUserInfo({
       title: "",
       id: 2,
@@ -39,10 +44,7 @@ const App = () => {
   return (
     <>
       <div className="app-container">
-        <button
-          className="get-user-button"
-          onClick={() => alert("wire me up!")}
-        >
+        <button className="get-user-button" onClick={handleFetchUser}>
           GET USER
         </button>
         <button
