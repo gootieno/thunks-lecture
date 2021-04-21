@@ -1,6 +1,11 @@
 const USER_ADDED = "user/USER_ADDED";
 const USER_REMOVED = "user/USER_REMOVED";
 
+/*
+TODO: Create a addUser action creator that takes a user object
+with a type 
+*/
+
 export const addUser = (userObj) => {
   return {
     type: USER_ADDED,
@@ -40,11 +45,12 @@ export const postUser = (userInfo) => async (dispatch) => {
       "Content-type": "application/json; charset=UTF-8",
     },
   });
+
   if (!response.ok) throw response;
   const user = await response.json();
   user.title = "WE POSTED A USER!";
   console.log("POSTED THE USER ------------------ ", user);
-  return dispatch(addUser(user));
+  dispatch(addUser(user));
 };
 
 export default function userReducer(state = null, action) {
