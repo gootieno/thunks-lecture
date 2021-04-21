@@ -1,17 +1,10 @@
-const USER_ADDED = "user/USER_ADDED";
+//TODO: Create a USER_ADDED action
 const USER_REMOVED = "user/USER_REMOVED";
 
 /*
 TODO: Create a addUser action creator that takes a user object
-with a type 
+with a type
 */
-
-export const addUser = (userObj) => {
-  return {
-    type: USER_ADDED,
-    user: userObj,
-  };
-};
 
 export const removeUser = () => {
   return {
@@ -24,12 +17,7 @@ const getUrl = "https://jsonplaceholder.typicode.com/todos/1";
 TODO: Turn the function into a thunk action creator using the
   above url
 */
-export const fetchUser = () => async (dispatch) => {
-  const response = await fetch(getUrl);
-  if (!response.ok) throw response;
-  const user = await response.json();
-  dispatch(addUser(user));
-};
+export const fetchUser = () => {};
 
 export const postUser = (userInfo) => async (dispatch) => {
   console.log("In the post user thunk ", userInfo);
@@ -42,7 +30,7 @@ export const postUser = (userInfo) => async (dispatch) => {
       message,
     }),
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      "Content-type": "application/json",
     },
   });
 
@@ -53,15 +41,11 @@ export const postUser = (userInfo) => async (dispatch) => {
   dispatch(addUser(user));
 };
 
-export default function userReducer(state = null, action) {
+//Todo: build a case for USER_ADDED
+export default function userReducer(state = {}, action) {
   switch (action.type) {
-    case USER_ADDED:
-      return {
-        ...state,
-        [action.user.id]: action.user,
-      };
     case USER_REMOVED:
-      return null;
+      return {};
     default:
       return state;
   }

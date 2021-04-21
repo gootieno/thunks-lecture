@@ -12,6 +12,7 @@ const App = () => {
   });
 
   const dispatch = useDispatch();
+
   const users = useSelector((state) =>
     state.user ? Object.values(state.user) : null
   );

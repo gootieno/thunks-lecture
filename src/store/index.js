@@ -1,19 +1,17 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+// Import thunk and applyMiddleware
+import { createStore, combineReducers, compose } from "redux";
 
-import userReducer from "./user";
-
-const rootReducer = combineReducers({
-  user: userReducer,
-});
+//Todo: add user reducer
+const rootReducer = combineReducers({});
 
 let enhancer;
 
+//Todo: add the thunk middleware
 if (process.env.NODE_ENV !== "production") {
   const logger = require("redux-logger").default;
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  enhancer = composeEnhancers(applyMiddleware(logger, thunk));
+  enhancer = composeEnhancers(applyMiddleware(logger));
 }
 
 const configureStore = (preloadedState) => {
